@@ -18,7 +18,7 @@ form.addEventListener("submit", (event) => {
   user.textContent = text;
   const reply = document.createElement("div");
   reply.className = "agent-message";
-  reply.textContent = "Проверяю кампанию. Вижу, что 4 версии ждут адаптации титров для DE и PL. Я могу подготовить рекомендации или передать задачу специалисту.";
+  reply.textContent = "I’m checking your campaign. Four variations are waiting for caption adaptation for the German and Polish markets. I can prepare recommendations or escalate the task to a specialist.";
   messages.append(user, reply);
   input.value = "";
   messages.scrollTop = messages.scrollHeight;

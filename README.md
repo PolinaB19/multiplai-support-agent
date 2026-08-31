@@ -1,67 +1,67 @@
 # Multiplai Support Agent
 
-Тестовый MVP SaaS-платформы для адаптации рекламных роликов под разные каналы и рынки с AI-агентом технической поддержки.
+A test MVP for a SaaS platform that adapts advertising videos for different channels and markets, with an AI technical-support agent.
 
-## Что уже есть
+## What is included
 
-- интерфейс help center внутри SaaS;
-- контекст активной рекламной кампании;
-- база популярных вопросов;
-- интерактивный чат с быстрыми вопросами;
-- демонстрационный ответ агента с объяснением проблемы и эскалацией;
-- адаптивная версия для компьютера и телефона;
-- запуск без внешних зависимостей.
+- an in-product Help Center;
+- active campaign context;
+- a popular-questions knowledge base;
+- an interactive chat with suggested questions;
+- a demo support response with explanation and escalation;
+- responsive desktop and mobile layouts;
+- a dependency-free local preview.
 
-## Запуск
+## Run locally
 
 ```bash
 npm run dev
 ```
 
-Откройте `http://127.0.0.1:4317`.
+Open `http://127.0.0.1:4317`.
 
-## Продуктовая гипотеза
+## Product hypothesis
 
-Пользователь загружает успешный ролик, выбирает каналы и рынки, задаёт изменения для персонажа, одежды, локации, продукта, фона или текста и получает набор вариантов. Поддержка видит контекст кампании и должна решить типовой вопрос сама, запросить недостающие данные либо передать обращение специалисту вместе с кратким резюме.
+A user uploads a successful ad, chooses channels and markets, and requests changes to the talent, wardrobe, location, product, background, or on-screen text. The platform returns a set of independent variations. The support agent sees campaign context and either resolves a common issue, asks for missing information, or escalates the conversation to a specialist with a concise summary.
 
-## План работ
+## Roadmap
 
-### Этап 1 — продукт и UX
+### Phase 1 — Product and UX
 
-- [x] Проверить актуальный сценарий Higgsfield Ad Multiplier.
-- [x] Создать первый интерфейс help center и чата.
-- [ ] Утвердить аудиторию, визуальный стиль и ключевой путь пользователя.
-- [ ] Спроектировать создание кампании и экран результатов.
+- [x] Validate the current Higgsfield Ad Multiplier workflow.
+- [x] Build the first Help Center and chat interface.
+- [ ] Confirm the audience, visual direction, and core user journey.
+- [ ] Design campaign creation and results screens.
 
-### Этап 2 — поддержка
+### Phase 2 — Support operations
 
-- [ ] Описать категории обращений и SLA.
-- [ ] Подготовить базу знаний и правила ответов.
-- [ ] Добавить создание тикета и передачу оператору.
-- [ ] Добавить историю диалогов, оценки и аналитику решений.
+- [ ] Define request categories and SLAs.
+- [ ] Build the knowledge base and response policies.
+- [ ] Add ticket creation and human handoff.
+- [ ] Add conversation history, ratings, and resolution analytics.
 
-### Этап 3 — интеграции
+### Phase 3 — Integrations
 
-- [ ] Подключить AI-модель для ответов по базе знаний.
-- [ ] Проверить доступный способ подключения Higgsfield MCP.
-- [ ] Добавить хранение пользователей, кампаний, файлов и статусов.
-- [ ] Добавить авторизацию и роли клиента/оператора/администратора.
+- [ ] Connect an AI model to the knowledge base.
+- [ ] Validate the available Higgsfield MCP integration path.
+- [ ] Store users, campaigns, files, and generation statuses.
+- [ ] Add authentication and customer, agent, and administrator roles.
 
-### Этап 4 — качество и релиз
+### Phase 4 — Quality and release
 
-- [ ] Автотесты критических сценариев и защита персональных данных.
-- [ ] Наблюдаемость, журнал действий и лимиты стоимости.
-- [ ] Тестовая публикация.
-- [ ] GitHub Actions, документация и первый релиз.
+- [ ] Add critical-path tests and personal-data safeguards.
+- [ ] Add observability, audit logs, and cost limits.
+- [ ] Publish a test environment.
+- [ ] Add GitHub Actions, documentation, and the first release.
 
-## Текущая структура
+## Project structure
 
-- `index.html` — рабочий прототип;
-- `app/globals.css` — визуальная система и адаптивность;
-- `app-static.js` — интерактивность чата;
-- `server.mjs` — локальный сервер без зависимостей;
-- `scripts/validate.mjs` — базовая проверка сборки.
+- `index.html` — working prototype;
+- `app/globals.css` — visual system and responsive styles;
+- `app-static.js` — chat interaction;
+- `server.mjs` — dependency-free local server;
+- `scripts/validate.mjs` — basic build validation.
 
-## Важное ограничение
+## Current limitation
 
-Текущая версия — продуктовый прототип. Она ещё не отправляет данные в Higgsfield и не использует реальную AI-модель. Эти подключения будут добавлены после утверждения процесса и прав доступа.
+This version is a product prototype. It does not send data to Higgsfield or use a live AI model yet. Those integrations will be added after the support process and access model are confirmed.
