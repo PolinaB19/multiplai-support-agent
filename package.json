@@ -1,0 +1,16 @@
+{
+  "name": "multiplai-support-agent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "MVP AI support agent for an ad-customization SaaS",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.mjs",
+    "start": "node server.mjs",
+    "build": "node scripts/validate.mjs",
+    "test": "node scripts/validate.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="AI-поддержка рекламных кампаний и адаптации креативов">
+  <title>Multiplai — AI-поддержка рекламных кампаний</title>
+  <link rel="stylesheet" href="/app/globals.css">
+</head>
+<body>
+<main class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">M</span><span>Multiplai</span></div>
+    <nav aria-label="Основная навигация">
+      <a href="#" class="nav-item"><span>⌂</span>Главная</a>
+      <a href="#" class="nav-item"><span>◫</span>Кампании</a>
+      <a href="#" class="nav-item"><span>▱</span>Креативы</a>
+      <a href="#" class="nav-item active"><span>?</span>Центр помощи</a>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="usage"><div><span>Генерации</span><b>24 / 50</b></div><div class="meter"><i></i></div></div>
+      <div class="profile"><span class="avatar">АК</span><div><b>Анна К.</b><small>Brand workspace</small></div><button aria-label="Настройки профиля">•••</button></div>
+    </div>
+  </aside>
+  <section class="workspace">
+    <header class="topbar"><span>Центр помощи</span><div><button class="icon-btn" aria-label="Уведомления">◔</button><button class="primary-btn">+ Новая кампания</button></div></header>
+    <div class="content">
+      <section class="hero">
+        <div class="eyebrow"><span class="spark">✦</span> AI-поддержка онлайн</div>
+        <h1>Как мы можем помочь?</h1>
+        <p>Найдите ответ или опишите задачу — агент разберётся в контексте кампании.</p>
+        <label class="search"><span>⌕</span><input aria-label="Поиск по базе знаний" placeholder="Найти статью, настройку или ошибку…"><kbd>Ctrl K</kbd></label>
+      </section>
+      <div class="support-grid">
+        <section class="knowledge">
+          <div class="section-heading"><div><h2>Популярные вопросы</h2><p>Быстрый старт с Ad Multiplier</p></div><a href="#">Все статьи →</a></div>
+          <div class="quick-list">
+            <a href="#" class="quick-card"><span class="quick-icon">▣</span><div><b>Как создать кампанию</b><small>3 мин</small></div><span class="arrow">›</span></a>
+            <a href="#" class="quick-card"><span class="quick-icon">↗</span><div><b>Подготовка исходного видео</b><small>4–30 сек</small></div><span class="arrow">›</span></a>
+            <a href="#" class="quick-card"><span class="quick-icon">◎</span><div><b>Форматы для соцсетей</b><small>6 каналов</small></div><span class="arrow">›</span></a>
+          </div>
+          <div class="campaign-card">
+            <div class="campaign-top"><span class="campaign-icon">◉</span><div><small>АКТИВНАЯ КАМПАНИЯ</small><h3>Summer Glow · 12 вариантов</h3></div><span class="status">В работе</span></div>
+            <div class="campaign-stats"><div><small>Каналы</small><b>TikTok · Reels · Shorts</b></div><div><small>Готово</small><b>8 из 12</b></div><div><small>Рынки</small><b>PL · DE · UK</b></div></div>
+            <div class="progress"><i></i></div>
+          </div>
+        </section>
+        <section class="chat-card">
+          <div class="chat-head"><div><span class="agent-avatar">✦</span><div><b>Мия</b><small><i></i>AI-агент поддержки</small></div></div><button aria-label="Меню чата">•••</button></div>
+          <div class="messages" id="messages" aria-live="polite">
+            <div class="day">Сегодня</div>
+            <div class="agent-message">Привет! Я вижу, что у вас активна кампания <b>Summer Glow</b>. Чем помочь?</div>
+            <div class="suggestions"><button data-question="Почему 4 варианта ещё не готовы?">Почему 4 варианта ещё не готовы?</button><button data-question="Как адаптировать видео для TikTok?">Как адаптировать для TikTok?</button></div>
+          </div>
+          <form class="composer" id="chat-form"><button type="button" aria-label="Прикрепить файл">＋</button><input id="message" aria-label="Сообщение агенту" placeholder="Опишите вопрос…"><button class="send" aria-label="Отправить">↑</button></form>
+          <div class="chat-note">Мия может ошибаться. Важные решения проверит специалист.</div>
+        </section>
+      </div>
+    </div>
+  </section>
+</main>
+<script src="/app-static.js"></script>
+</body>
+</html>
