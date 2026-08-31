@@ -29,16 +29,15 @@
         <div class="eyebrow"><span class="spark">✦</span> AI SUPPORT ONLINE</div>
         <h1>How can we help?</h1>
         <p>Find an answer or describe your issue — the agent understands your campaign context.</p>
-        <label class="search"><span>⌕</span><input aria-label="Search the knowledge base" placeholder="Search for an article, setting, or error…"><kbd>Ctrl K</kbd></label>
+        <div class="search-wrap">
+          <label class="search"><span>⌕</span><input id="knowledge-search" autocomplete="off" aria-label="Search the knowledge base" placeholder="Search for an article, setting, or error…"><kbd>Ctrl K</kbd></label>
+          <div class="search-results" id="search-results" hidden></div>
+        </div>
       </section>
       <div class="support-grid">
         <section class="knowledge">
-          <div class="section-heading"><div><h2>Popular questions</h2><p>Get started with Ad Multiplier</p></div><a href="#">All articles →</a></div>
-          <div class="quick-list">
-            <a href="#" class="quick-card"><span class="quick-icon">▣</span><div><b>How to create a campaign</b><small>3 min</small></div><span class="arrow">›</span></a>
-            <a href="#" class="quick-card"><span class="quick-icon">↗</span><div><b>Prepare your source video</b><small>4–30 sec</small></div><span class="arrow">›</span></a>
-            <a href="#" class="quick-card"><span class="quick-icon">◎</span><div><b>Formats for social channels</b><small>6 channels</small></div><span class="arrow">›</span></a>
-          </div>
+          <div class="section-heading"><div><h2>Knowledge base</h2><p>Guides and product documentation</p></div><a href="/help.html">All articles →</a></div>
+          <div class="category-grid" id="category-grid" aria-live="polite"></div>
           <div class="campaign-card">
             <div class="campaign-top"><span class="campaign-icon">◉</span><div><small>ACTIVE CAMPAIGN</small><h3>Summer Glow · 12 variations</h3></div><span class="status">In progress</span></div>
             <div class="campaign-stats"><div><small>Channels</small><b>TikTok · Reels · Shorts</b></div><div><small>Ready</small><b>8 of 12</b></div><div><small>Markets</small><b>PL · DE · UK</b></div></div>

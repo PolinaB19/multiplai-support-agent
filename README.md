@@ -8,6 +8,8 @@ A test MVP for a SaaS platform that adapts advertising videos for different chan
 - active campaign context;
 - a popular-questions knowledge base;
 - an interactive chat with suggested questions;
+- a searchable knowledge base with Billing, Account, Integrations, Troubleshooting, API, and Security documentation;
+- contextual chat answers linked to the most relevant help article;
 - a demo support response with explanation and escalation;
 - responsive desktop and mobile layouts;
 - a dependency-free local preview.
@@ -59,6 +61,8 @@ A user uploads a successful ad, chooses channels and markets, and requests chang
 - `index.html` — working prototype;
 - `app/globals.css` — visual system and responsive styles;
 - `app-static.js` — chat interaction;
+- `help.html` and `article.html` — documentation catalogue and article pages;
+- `data/knowledge-base.json` — shared source for documentation, search, and support answers;
 - `server.mjs` — dependency-free local server;
 - `scripts/validate.mjs` — basic build validation.
 

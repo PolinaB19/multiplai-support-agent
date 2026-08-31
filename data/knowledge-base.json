@@ -1,0 +1,168 @@
+{
+  "categories": [
+    { "id": "billing", "name": "Billing", "icon": "$", "description": "Plans, credits, payments, and invoices" },
+    { "id": "account", "name": "Account", "icon": "@", "description": "Profile, workspace, access, and team roles" },
+    { "id": "integrations", "name": "Integrations", "icon": "+", "description": "Higgsfield, channels, and connected tools" },
+    { "id": "troubleshooting", "name": "Troubleshooting", "icon": "!", "description": "Fix uploads, generations, and exports" },
+    { "id": "api", "name": "API", "icon": "{ }", "description": "Authentication, requests, limits, and webhooks" },
+    { "id": "security", "name": "Security", "icon": "#", "description": "Data protection, permissions, and incidents" }
+  ],
+  "articles": [
+    {
+      "slug": "billing-credits-and-usage",
+      "category": "billing",
+      "title": "How credits and generation costs work",
+      "summary": "Understand when credits are reserved, charged, returned, and how variation costs are calculated.",
+      "keywords": ["credits", "cost", "charge", "usage", "plan", "generation", "refund"],
+      "readTime": "4 min",
+      "sections": [
+        { "heading": "Credit lifecycle", "body": "Multiplai estimates the cost before a campaign starts. Credits are reserved when you confirm a generation and charged only for variations submitted to the provider. A failed variation is automatically reviewed for a credit return." },
+        { "heading": "What changes the cost", "body": "Cost depends on the selected model, duration, resolution, number of variations, and any additional localization step such as translated captions or synthetic voiceover." },
+        { "heading": "Check your usage", "steps": ["Open Workspace settings.", "Select Billing and usage.", "Filter by campaign to see each reservation, charge, and return."] }
+      ]
+    },
+    {
+      "slug": "billing-payment-and-invoices",
+      "category": "billing",
+      "title": "Payments, failed renewals, and invoices",
+      "summary": "Update payment details, retry a renewal, and download invoices for your workspace.",
+      "keywords": ["payment", "card", "invoice", "receipt", "renewal", "failed", "billing"],
+      "readTime": "3 min",
+      "sections": [
+        { "heading": "Update a payment method", "body": "Workspace owners can update the billing card from Billing settings. The new method is used for the next renewal and any manually approved credit purchase." },
+        { "heading": "If a renewal fails", "body": "We retry a failed renewal before limiting new generations. Existing assets stay available. Check the card balance, billing address, and bank approval, then select Retry payment." },
+        { "heading": "Download an invoice", "steps": ["Open Billing and usage.", "Choose Invoices.", "Select the billing period and download the PDF."] }
+      ]
+    },
+    {
+      "slug": "account-workspaces-and-roles",
+      "category": "account",
+      "title": "Workspaces, invitations, and team roles",
+      "summary": "Create a workspace, invite teammates, and choose the right permissions for each role.",
+      "keywords": ["workspace", "invite", "member", "role", "owner", "admin", "permissions"],
+      "readTime": "5 min",
+      "sections": [
+        { "heading": "Available roles", "body": "Owners manage billing and workspace deletion. Admins manage members and integrations. Editors create and publish campaigns. Viewers can review results without changing them." },
+        { "heading": "Invite a teammate", "steps": ["Open Workspace settings and select Members.", "Choose Invite member.", "Enter an email, select a role, and send the invitation."] },
+        { "heading": "Keep access current", "body": "Review membership regularly and remove access when a collaborator leaves a project. Role changes take effect immediately." }
+      ]
+    },
+    {
+      "slug": "account-sign-in-and-profile",
+      "category": "account",
+      "title": "Sign-in, email, and profile recovery",
+      "summary": "Recover access, change your profile details, and resolve common sign-in problems.",
+      "keywords": ["login", "sign in", "password", "email", "profile", "access", "recovery"],
+      "readTime": "3 min",
+      "sections": [
+        { "heading": "Recover access", "body": "Use the recovery option on the sign-in page and follow the secure link sent to your account email. Recovery links expire and can only be used once." },
+        { "heading": "Change your email", "body": "Open Profile settings and select Change email. You must verify both the current session and the new address before the update is applied." },
+        { "heading": "Still locked out?", "body": "Contact support from the email associated with your workspace. Never send passwords, recovery codes, or full payment-card details." }
+      ]
+    },
+    {
+      "slug": "integrations-connect-higgsfield",
+      "category": "integrations",
+      "title": "Connect Higgsfield Ad Multiplier",
+      "summary": "Connect a Higgsfield account and verify that Multiplai can submit and monitor ad variations.",
+      "keywords": ["higgsfield", "ad multiplier", "mcp", "connect", "integration", "authorization"],
+      "readTime": "5 min",
+      "sections": [
+        { "heading": "Before you connect", "body": "Use a Higgsfield account with enough generation credits and access to Ad Multiplier. Workspace admins can create or replace the connection." },
+        { "heading": "Connect the account", "steps": ["Open Workspace settings and select Integrations.", "Choose Higgsfield and select Connect.", "Authorize access in the Higgsfield window, then return to Multiplai.", "Run the connection test."] },
+        { "heading": "What Multiplai uses", "body": "The integration submits approved generation instructions, reads job status, and attaches completed outputs to the originating campaign. It does not publish an asset without a separate approval." }
+      ]
+    },
+    {
+      "slug": "integrations-export-channels",
+      "category": "integrations",
+      "title": "Export creatives for TikTok, Reels, and Shorts",
+      "summary": "Prepare channel-ready files and understand what is exported to each destination.",
+      "keywords": ["tiktok", "instagram", "reels", "youtube", "shorts", "export", "publish", "channel"],
+      "readTime": "4 min",
+      "sections": [
+        { "heading": "Channel presets", "body": "A preset controls aspect ratio, safe zones, filename rules, caption files, and maximum duration. It does not change the approved creative direction." },
+        { "heading": "Export a variation", "steps": ["Open the campaign results.", "Select one or more approved variations.", "Choose Export and select a channel preset.", "Review warnings, then create the export package."] },
+        { "heading": "Publishing", "body": "The prototype currently creates channel-ready downloads. Direct publishing will require a separate connection and explicit publish permission." }
+      ]
+    },
+    {
+      "slug": "troubleshooting-generation-stuck",
+      "category": "troubleshooting",
+      "title": "A generation is stuck or taking too long",
+      "summary": "Diagnose queued and processing jobs, retry safely, and know when to contact support.",
+      "keywords": ["stuck", "pending", "queued", "processing", "slow", "generation", "retry", "not ready"],
+      "readTime": "4 min",
+      "sections": [
+        { "heading": "Check the status", "body": "Queued means the provider has accepted the request but has not started rendering. Processing means at least one variation is being rendered. Large batches can complete at different times." },
+        { "heading": "Safe troubleshooting", "steps": ["Refresh the campaign status once.", "Check whether only one market or format is delayed.", "Wait for the status timer shown in the campaign.", "Use Retry only after the job is marked failed."] },
+        { "heading": "Escalate", "body": "If the timer has expired with no update, contact support with the campaign name and variation ID. Do not submit a duplicate batch, because it may consume credits twice." }
+      ]
+    },
+    {
+      "slug": "troubleshooting-upload-rejected",
+      "category": "troubleshooting",
+      "title": "Source video upload was rejected",
+      "summary": "Fix unsupported files, duration errors, missing audio, and upload interruptions.",
+      "keywords": ["upload", "rejected", "video", "format", "duration", "audio", "file", "error"],
+      "readTime": "4 min",
+      "sections": [
+        { "heading": "Source requirements", "body": "Ad Multiplier accepts a 4–30 second source ad. Use a standard MP4 file with a stable frame rate and make sure the file plays fully before uploading." },
+        { "heading": "Common fixes", "steps": ["Export the source again as MP4.", "Trim it to the supported duration.", "Remove password protection and incomplete cloud placeholders.", "Retry on a stable connection without closing the page."] },
+        { "heading": "Audio and captions", "body": "Original audio is preserved by default. Burned-in captions can be removed only when requested, while translated captions and voiceover are separate localization steps." }
+      ]
+    },
+    {
+      "slug": "api-authentication-and-requests",
+      "category": "api",
+      "title": "API authentication and your first request",
+      "summary": "Create a scoped API key, send a request, and handle authentication errors safely.",
+      "keywords": ["api", "key", "token", "authentication", "request", "401", "403", "developer"],
+      "readTime": "6 min",
+      "sections": [
+        { "heading": "Create a key", "body": "Workspace admins can create scoped keys from Developer settings. Choose the minimum scopes required and store the secret in a secure server environment." },
+        { "heading": "Authenticate", "body": "Send the key in the Authorization header as a Bearer token. Never place a secret in browser code, screenshots, chat messages, or a public repository." },
+        { "heading": "Common errors", "body": "A 401 response usually means the token is missing or invalid. A 403 response means the key is valid but does not have the required scope or workspace access." }
+      ]
+    },
+    {
+      "slug": "api-rate-limits-and-webhooks",
+      "category": "api",
+      "title": "Rate limits, retries, and webhooks",
+      "summary": "Build reliable integrations with backoff, idempotency, and verified status events.",
+      "keywords": ["api", "rate limit", "429", "webhook", "retry", "idempotency", "event"],
+      "readTime": "6 min",
+      "sections": [
+        { "heading": "Rate limits", "body": "When the API returns 429, wait for the Retry-After value before retrying. Use exponential backoff with jitter and limit concurrent campaign submissions." },
+        { "heading": "Idempotent requests", "body": "Include a unique idempotency key when creating a campaign or generation batch. Reusing the same key prevents an accidental duplicate charge after a network retry." },
+        { "heading": "Webhook safety", "body": "Verify every webhook signature, acknowledge valid events quickly, and process them asynchronously. Event delivery can be repeated and is not guaranteed to arrive in order." }
+      ]
+    },
+    {
+      "slug": "security-data-and-retention",
+      "category": "security",
+      "title": "Creative data, privacy, and retention",
+      "summary": "Learn what campaign data is stored, why it is needed, and how deletion requests work.",
+      "keywords": ["security", "privacy", "data", "retention", "delete", "creative", "personal data"],
+      "readTime": "5 min",
+      "sections": [
+        { "heading": "Data used by the product", "body": "Campaign inputs, instructions, generated assets, status events, and support conversations are used to operate the workspace and diagnose issues. Avoid uploading data that is not required for the creative task." },
+        { "heading": "Retention", "body": "Retention rules should be configured by workspace policy. Deleting a campaign removes it from normal access and starts the provider-specific deletion workflow where supported." },
+        { "heading": "User requests", "body": "Workspace owners can request export or deletion of eligible account data. Legal, fraud-prevention, or billing records may require a different retention period." }
+      ]
+    },
+    {
+      "slug": "security-access-and-incidents",
+      "category": "security",
+      "title": "Access control and reporting a security issue",
+      "summary": "Protect workspace access, review suspicious activity, and report a potential incident.",
+      "keywords": ["security", "incident", "breach", "access", "audit", "suspicious", "permissions", "report"],
+      "readTime": "4 min",
+      "sections": [
+        { "heading": "Reduce access risk", "body": "Use individual accounts, least-privilege roles, short-lived integration credentials, and regular member reviews. Never share API keys between environments." },
+        { "heading": "If activity looks suspicious", "steps": ["Revoke the affected API key or integration.", "Remove unrecognized sessions and members.", "Preserve the event time, workspace, and relevant IDs.", "Contact the security team without sharing secrets in the message."] },
+        { "heading": "Support boundaries", "body": "Support will verify ownership before discussing account details. Team members will never ask for your password, complete card number, or API secret." }
+      ]
+    }
+  ]
+}
