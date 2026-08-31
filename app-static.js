@@ -1,30 +1,16 @@
+import { demoScenarios, evaluateSupportRequest, rankedArticles } from "/support-engine.js";
+
 const input = document.querySelector("#message");
 const form = document.querySelector("#chat-form");
 const messages = document.querySelector("#messages");
 const searchInput = document.querySelector("#knowledge-search");
 const searchResults = document.querySelector("#search-results");
 const categoryGrid = document.querySelector("#category-grid");
+const demoToggle = document.querySelector("#demo-toggle");
+const demoPanel = document.querySelector("#demo-panel");
+const scenarioList = document.querySelector("#scenario-list");
+const internalResult = document.querySelector("#internal-result");
 let knowledgeBase = { categories: [], articles: [] };
-
-const normalize = (value) => value.toLowerCase().replace(/[^a-z0-9 ]/g, " ");
-const tokens = (value) => [...new Set(normalize(value).split(/\s+/).filter((word) => word.length > 2))];
-
-function articleScore(article, query) {
-  const words = tokens(query);
-  if (!words.length) return 0;
-  const title = normalize(article.title);
-  const keywords = normalize(article.keywords.join(" "));
-  const summary = normalize(article.summary);
-  return words.reduce((score, word) => score + (title.includes(word) ? 5 : 0) + (keywords.includes(word) ? 3 : 0) + (summary.includes(word) ? 1 : 0), 0);
-}
-
-function rankedArticles(query) {
-  return knowledgeBase.articles
-    .map((article) => ({ article, score: articleScore(article, query) }))
-    .filter((item) => item.score > 0)
-    .sort((a, b) => b.score - a.score)
-    .map((item) => item.article);
-}
 
 function renderCategories() {
   categoryGrid.replaceChildren();
@@ -39,7 +25,7 @@ function renderCategories() {
 }
 
 function renderSearch(query) {
-  const results = rankedArticles(query).slice(0, 5);
+  const results = rankedArticles(knowledgeBase, query).slice(0, 5).map((item) => item.article);
   searchResults.replaceChildren();
   if (!query.trim()) {
     searchResults.hidden = true;
@@ -69,27 +55,57 @@ function appendMessage(className, text) {
   return message;
 }
 
+function showInternalResult(result) {
+  internalResult.replaceChildren();
+  const outcome = document.createElement("div");
+  outcome.className = `outcome-badge ${result.outcome.toLowerCase()}`;
+  outcome.textContent = result.outcome;
+  internalResult.append(outcome);
+  if (result.handoff) {
+    const note = document.createElement("small");
+    note.textContent = "Internal handoff payload — never shown to the customer";
+    const code = document.createElement("pre");
+    code.textContent = JSON.stringify(result.handoff, null, 2);
+    internalResult.append(note, code);
+  } else {
+    const note = document.createElement("p");
+    note.textContent = `Answered from Help Center${result.article ? `: ${result.article.title}` : ""}. No ticket created.`;
+    internalResult.append(note);
+  }
+}
+
 function answerQuestion(question) {
   appendMessage("user-message", question);
-  const article = rankedArticles(question)[0];
+  const result = evaluateSupportRequest(question, knowledgeBase);
   const reply = document.createElement("div");
   reply.className = "agent-message sourced-answer";
-  if (article) {
-    const copy = document.createElement("span");
-    copy.textContent = article.summary + " ";
+  const copy = document.createElement("span");
+  copy.textContent = result.reply;
+  reply.append(copy);
+  if (result.article) {
     const source = document.createElement("a");
-    source.href = `/article.html?slug=${encodeURIComponent(article.slug)}`;
-    source.textContent = `Read: ${article.title} →`;
-    reply.append(copy, source);
-  } else {
-    reply.textContent = "I couldn’t find an exact match in the documentation. Browse the Help Center or ask me with more detail so I can route the issue correctly.";
-    const source = document.createElement("a");
-    source.href = "/help.html";
-    source.textContent = " Browse all documentation →";
+    source.href = `/article.html?slug=${encodeURIComponent(result.article.slug)}`;
+    source.textContent = `Read: ${result.article.title} →`;
     reply.append(source);
   }
   messages.append(reply);
   messages.scrollTop = messages.scrollHeight;
+  showInternalResult(result);
+  return result;
+}
+
+function renderScenarios() {
+  scenarioList.replaceChildren();
+  demoScenarios.forEach((scenario) => {
+    const button = document.createElement("button");
+    button.innerHTML = `<span>${scenario.label}</span><small>Expected: ${scenario.expected}</small>`;
+    button.addEventListener("click", () => {
+      input.value = scenario.message;
+      answerQuestion(scenario.message);
+      input.value = "";
+    });
+    scenarioList.append(button);
+  });
 }
 
 document.querySelectorAll("[data-question]").forEach((button) => {
@@ -107,6 +123,11 @@ form.addEventListener("submit", (event) => {
   input.value = "";
 });
 
+demoToggle.addEventListener("click", () => {
+  demoPanel.hidden = !demoPanel.hidden;
+  demoToggle.setAttribute("aria-expanded", String(!demoPanel.hidden));
+  if (!demoPanel.hidden) demoPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+});
 searchInput.addEventListener("input", () => renderSearch(searchInput.value));
 searchInput.addEventListener("focus", () => renderSearch(searchInput.value));
 document.addEventListener("click", (event) => {
@@ -127,7 +148,13 @@ fetch("/data/knowledge-base.json")
   .then((data) => {
     knowledgeBase = data;
     renderCategories();
+    renderScenarios();
+    if (new URLSearchParams(location.search).get("demo") === "escalation") {
+      demoPanel.hidden = false;
+      demoToggle.setAttribute("aria-expanded", "true");
+    }
   })
   .catch(() => {
     categoryGrid.innerHTML = '<div class="search-empty">Knowledge base is temporarily unavailable.</div>';
+    form.querySelector("button.send").disabled = true;
   });

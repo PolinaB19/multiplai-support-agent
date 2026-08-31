@@ -1,4 +1,5 @@
 import { readFile } from "node:fs/promises";
+import { demoScenarios, evaluateSupportRequest } from "../support-engine.js";
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
 const [home, help, articlePage, knowledgeText] = await Promise.all([
@@ -28,4 +29,17 @@ const rank = (query) => {
 for (const [query, expected] of [["download my invoice", "billing"], ["invite a teammate", "account"], ["connect Higgsfield", "integrations"], ["upload was rejected", "troubleshooting"], ["API rate limit", "api"], ["report a security incident", "security"]]) {
   if (rank(query) !== expected) throw new Error(`Wrong contextual answer for: ${query}`);
 }
-console.log(`Knowledge base validation passed: ${knowledge.categories.length} categories, ${knowledge.articles.length} articles`);
+for (const scenario of demoScenarios) {
+  const result = evaluateSupportRequest(scenario.message, knowledge);
+  if (result.outcome !== scenario.expected) throw new Error(`${scenario.id}: expected ${scenario.expected}, received ${result.outcome}`);
+  if (scenario.expectedPriority && result.handoff?.priority !== scenario.expectedPriority) throw new Error(`${scenario.id}: expected priority ${scenario.expectedPriority}`);
+  if (result.outcome === "RESOLVED_BY_AI" && !result.article) throw new Error(`${scenario.id}: AI answer is missing a Help Center source`);
+  if (result.outcome !== "RESOLVED_BY_AI") {
+    for (const field of ["status", "category", "priority", "route_to", "reason", "summary", "troubleshooting_attempted", "missing_information"]) {
+      if (!(field in result.handoff)) throw new Error(`${scenario.id}: handoff is missing ${field}`);
+    }
+  }
+}
+const firstTechnicalQuestion = evaluateSupportRequest("My API returns 401. What should I check?", knowledge);
+if (firstTechnicalQuestion.outcome !== "RESOLVED_BY_AI") throw new Error("A first technical question must use Help Center troubleshooting before escalation");
+console.log(`Support workflow validation passed: ${knowledge.categories.length} categories, ${knowledge.articles.length} articles, ${demoScenarios.length} routing scenarios`);

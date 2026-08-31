@@ -23,7 +23,7 @@
     </div>
   </aside>
   <section class="workspace">
-    <header class="topbar"><span>Help Center</span><div><button class="icon-btn" aria-label="Notifications">◔</button><button class="primary-btn">+ New campaign</button></div></header>
+    <header class="topbar"><span>Help Center</span><div><button class="demo-toggle" id="demo-toggle" aria-expanded="false" aria-controls="demo-panel">Test escalation</button><button class="icon-btn" aria-label="Notifications">◔</button><button class="primary-btn">+ New campaign</button></div></header>
     <div class="content">
       <section class="hero">
         <div class="eyebrow"><span class="spark">✦</span> AI SUPPORT ONLINE</div>
@@ -55,9 +55,19 @@
           <div class="chat-note">Mia may make mistakes. A specialist will review important decisions.</div>
         </section>
       </div>
+      <section class="demo-panel" id="demo-panel" hidden>
+        <div class="demo-heading">
+          <div><span class="eyebrow">INTERNAL DEMO MODE</span><h2>Escalation workflow tester</h2><p>Run a predefined customer message through the same Help Center-first decision flow used by Mia.</p></div>
+          <div class="demo-legend"><span><i class="resolved"></i>AI answer</span><span><i class="l1"></i>L1</span><span><i class="l2"></i>L2</span><span><i class="urgent"></i>Urgent</span></div>
+        </div>
+        <div class="demo-grid">
+          <div class="scenario-list" id="scenario-list"></div>
+          <div class="internal-result" id="internal-result"><p>Select a scenario to see the internal outcome. This panel is never part of the customer experience.</p></div>
+        </div>
+      </section>
     </div>
   </section>
 </main>
-<script src="/app-static.js"></script>
+<script type="module" src="/app-static.js"></script>
 </body>
 </html>

@@ -10,6 +10,8 @@ A test MVP for a SaaS platform that adapts advertising videos for different chan
 - an interactive chat with suggested questions;
 - a searchable knowledge base with Billing, Account, Integrations, Troubleshooting, API, and Security documentation;
 - contextual chat answers linked to the most relevant help article;
+- Help Center-first human escalation to L1, L2, or urgent response;
+- an internal demo panel with predefined routing scenarios and handoff payloads;
 - a demo support response with explanation and escalation;
 - responsive desktop and mobile layouts;
 - a dependency-free local preview.
@@ -63,6 +65,8 @@ A user uploads a successful ad, chooses channels and markets, and requests chang
 - `app-static.js` — chat interaction;
 - `help.html` and `article.html` — documentation catalogue and article pages;
 - `data/knowledge-base.json` — shared source for documentation, search, and support answers;
+- `support-engine.js` — deterministic resolution, escalation, priority, and routing rules;
+- `docs/escalation-workflow.md` — workflow and internal handoff documentation;
 - `server.mjs` — dependency-free local server;
 - `scripts/validate.mjs` — basic build validation.
 
