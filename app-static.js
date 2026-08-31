@@ -55,7 +55,7 @@ function appendMessage(className, text) {
   return message;
 }
 
-function showInternalResult(result) {
+function showInternalResult(result, ticket = null, ticketError = null) {
   internalResult.replaceChildren();
   const outcome = document.createElement("div");
   outcome.className = `outcome-badge ${result.outcome.toLowerCase()}`;
@@ -63,10 +63,17 @@ function showInternalResult(result) {
   internalResult.append(outcome);
   if (result.handoff) {
     const note = document.createElement("small");
-    note.textContent = "Internal handoff payload — never shown to the customer";
+    note.textContent = ticketError ? `Ticket creation failed: ${ticketError.message}` : ticket ? `Saved as ${ticket.id} — internal record never shown to the customer` : "Internal handoff payload — never shown to the customer";
     const code = document.createElement("pre");
-    code.textContent = JSON.stringify(result.handoff, null, 2);
+    code.textContent = JSON.stringify(ticket || result.handoff, null, 2);
     internalResult.append(note, code);
+    if (ticket) {
+      const link = document.createElement("a");
+      link.className = "internal-ticket-link";
+      link.href = `/operator.html?ticket=${encodeURIComponent(ticket.id)}`;
+      link.textContent = "Open in Operator Queue →";
+      internalResult.append(link);
+    }
   } else {
     const note = document.createElement("p");
     note.textContent = `Answered from Help Center${result.article ? `: ${result.article.title}` : ""}. No ticket created.`;
@@ -74,13 +81,25 @@ function showInternalResult(result) {
   }
 }
 
-function answerQuestion(question) {
+async function answerQuestion(question) {
   appendMessage("user-message", question);
   const result = evaluateSupportRequest(question, knowledgeBase);
+  let ticket = null;
+  let ticketError = null;
+  if (result.handoff) {
+    try {
+      const response = await fetch("/api/tickets", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(result.handoff) });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "Ticket creation failed");
+      ticket = data.ticket;
+    } catch (error) {
+      ticketError = error;
+    }
+  }
   const reply = document.createElement("div");
   reply.className = "agent-message sourced-answer";
   const copy = document.createElement("span");
-  copy.textContent = result.reply;
+  copy.textContent = ticketError ? "I couldn’t complete the support handoff right now. Please try again in a moment; you won’t need to re-enter the details already in this conversation." : result.reply + (ticket ? ` Your case ID is ${ticket.id}.` : "");
   reply.append(copy);
   if (result.article) {
     const source = document.createElement("a");
@@ -90,7 +109,7 @@ function answerQuestion(question) {
   }
   messages.append(reply);
   messages.scrollTop = messages.scrollHeight;
-  showInternalResult(result);
+  showInternalResult(result, ticket, ticketError);
   return result;
 }
 
@@ -99,9 +118,9 @@ function renderScenarios() {
   demoScenarios.forEach((scenario) => {
     const button = document.createElement("button");
     button.innerHTML = `<span>${scenario.label}</span><small>Expected: ${scenario.expected}</small>`;
-    button.addEventListener("click", () => {
+    button.addEventListener("click", async () => {
       input.value = scenario.message;
-      answerQuestion(scenario.message);
+      await answerQuestion(scenario.message);
       input.value = "";
     });
     scenarioList.append(button);
@@ -115,11 +134,11 @@ document.querySelectorAll("[data-question]").forEach((button) => {
   });
 });
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
   const text = input.value.trim();
   if (!text) return;
-  answerQuestion(text);
+  await answerQuestion(text);
   input.value = "";
 });
 

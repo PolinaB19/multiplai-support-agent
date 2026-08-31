@@ -12,6 +12,8 @@ A test MVP for a SaaS platform that adapts advertising videos for different chan
 - contextual chat answers linked to the most relevant help article;
 - Help Center-first human escalation to L1, L2, or urgent response;
 - an internal demo panel with predefined routing scenarios and handoff payloads;
+- durable local ticket creation with unique case IDs;
+- an Operator Queue for ownership, internal notes, status changes, and resolution;
 - a demo support response with explanation and escalation;
 - responsive desktop and mobile layouts;
 - a dependency-free local preview.
@@ -66,10 +68,12 @@ A user uploads a successful ad, chooses channels and markets, and requests chang
 - `help.html` and `article.html` — documentation catalogue and article pages;
 - `data/knowledge-base.json` — shared source for documentation, search, and support answers;
 - `support-engine.js` — deterministic resolution, escalation, priority, and routing rules;
+- `ticket-store.js` and `server.mjs` — validated ticket API and local persistent store;
+- `operator.html` — internal support queue and case-management interface;
 - `docs/escalation-workflow.md` — workflow and internal handoff documentation;
 - `server.mjs` — dependency-free local server;
 - `scripts/validate.mjs` — basic build validation.
 
 ## Current limitation
 
-This version is a product prototype. It does not send data to Higgsfield or use a live AI model yet. Those integrations will be added after the support process and access model are confirmed.
+This version is a product prototype. Tickets persist locally in the ignored `runtime/` directory. Authentication and production D1 storage are required before public deployment. The app does not send data to Higgsfield or use a live AI model yet.

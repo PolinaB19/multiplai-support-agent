@@ -35,6 +35,17 @@ Escalated cases create an internal object with this shape:
 
 The payload is internal. The customer receives a natural confirmation that the details already provided are included in the handoff.
 
+## Ticket lifecycle
+
+An escalated payload is submitted to `POST /api/tickets`. The ticket receives a durable case ID and starts in `OPEN`. In the Operator Queue, a support agent can:
+
+1. take ownership, moving the ticket to `IN_PROGRESS`;
+2. add internal investigation notes;
+3. review captured troubleshooting and missing information;
+4. resolve the case, moving it to `RESOLVED`.
+
+The local prototype stores tickets in the ignored `runtime/` directory and blocks that directory from static HTTP access. Before public deployment, this store must be replaced with authenticated D1-backed persistence.
+
 ## Testing
 
 Open the Help Center and select **Test escalation**. The internal demo view includes scenarios for an API-key question, first and persistent 401 errors, a human request, duplicate billing, a suspected outage, and potential data loss.

@@ -1,9 +1,10 @@
 import { readFile } from "node:fs/promises";
 import { demoScenarios, evaluateSupportRequest } from "../support-engine.js";
+import { applyTicketUpdate, buildTicket, validateTicketInput } from "../ticket-store.js";
 
 const read = (path) => readFile(new URL(`../${path}`, import.meta.url), "utf8");
-const [home, help, articlePage, knowledgeText] = await Promise.all([
-  read("index.html"), read("help.html"), read("article.html"), read("data/knowledge-base.json")
+const [home, help, articlePage, operatorPage, knowledgeText] = await Promise.all([
+  read("index.html"), read("help.html"), read("article.html"), read("operator.html"), read("data/knowledge-base.json")
 ]);
 const knowledge = JSON.parse(knowledgeText);
 for (const marker of ["Multiplai", "Help Center", "Knowledge base", "Summer Glow"]) {
@@ -15,6 +16,7 @@ for (const category of ["billing", "account", "integrations", "troubleshooting",
 }
 if (knowledge.articles.length < 12) throw new Error("Knowledge base needs at least 12 articles");
 if (!help.includes("article-grid") || !articlePage.includes("article-page")) throw new Error("Documentation routes are incomplete");
+if (!operatorPage.includes("ticket-list") || !operatorPage.includes("ticket-detail")) throw new Error("Operator queue is incomplete");
 const normalize = (value) => value.toLowerCase().replace(/[^a-z0-9 ]/g, " ");
 const rank = (query) => {
   const words = [...new Set(normalize(query).split(/\s+/).filter((word) => word.length > 2))];
@@ -38,6 +40,11 @@ for (const scenario of demoScenarios) {
     for (const field of ["status", "category", "priority", "route_to", "reason", "summary", "troubleshooting_attempted", "missing_information"]) {
       if (!(field in result.handoff)) throw new Error(`${scenario.id}: handoff is missing ${field}`);
     }
+    const valid = validateTicketInput(result.handoff);
+    const ticket = buildTicket(result.handoff, 1, new Date("2026-08-31T12:00:00Z"));
+    if (ticket.status !== "OPEN" || !ticket.id.startsWith("TKT-20260831-")) throw new Error(`${scenario.id}: ticket creation failed`);
+    const updated = applyTicketUpdate(ticket, { status: "IN_PROGRESS", assignee: "Test operator", internal_note: "Investigating" }, new Date("2026-08-31T12:05:00Z"));
+    if (updated.status !== "IN_PROGRESS" || updated.assignee !== "Test operator" || updated.activity.length < 3 || !valid.summary) throw new Error(`${scenario.id}: ticket update failed`);
   }
 }
 const firstTechnicalQuestion = evaluateSupportRequest("My API returns 401. What should I check?", knowledge);

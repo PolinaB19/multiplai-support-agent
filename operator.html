@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Internal Multiplai support ticket queue">
+  <title>Operator Queue — Multiplai</title>
+  <link rel="stylesheet" href="/app/globals.css">
+</head>
+<body class="operator-body">
+  <header class="docs-header">
+    <a class="brand docs-brand" href="/"><span class="brand-mark">M</span><span>Multiplai</span></a>
+    <nav aria-label="Operator navigation"><a href="/">Customer Help</a><a href="/help.html">Documentation</a><a class="active" href="/operator.html">Operator Queue</a></nav>
+    <span class="internal-label">INTERNAL</span>
+  </header>
+  <main class="operator-main">
+    <section class="operator-title">
+      <div><span class="eyebrow">SUPPORT OPERATIONS</span><h1>Ticket queue</h1><p>Review AI handoffs, take ownership, add investigation notes, and resolve customer cases.</p></div>
+      <button class="primary-btn" id="seed-demo">+ Create demo tickets</button>
+    </section>
+    <section class="ticket-metrics" id="ticket-metrics" aria-label="Ticket summary"></section>
+    <section class="queue-toolbar">
+      <label><span>Search</span><input id="ticket-search" placeholder="Ticket ID, category, or summary…"></label>
+      <label><span>Status</span><select id="status-filter"><option value="ALL">All statuses</option><option value="OPEN">Open</option><option value="IN_PROGRESS">In progress</option><option value="RESOLVED">Resolved</option></select></label>
+      <label><span>Priority</span><select id="priority-filter"><option value="ALL">All priorities</option><option>URGENT</option><option>HIGH</option><option>MEDIUM</option><option>LOW</option></select></label>
+      <button id="refresh-tickets" aria-label="Refresh tickets">↻ Refresh</button>
+    </section>
+    <div class="queue-layout">
+      <section class="ticket-list" id="ticket-list" aria-live="polite"></section>
+      <aside class="ticket-detail" id="ticket-detail"><div class="queue-empty"><b>Select a ticket</b><p>Case details and actions will appear here.</p></div></aside>
+    </div>
+    <div class="operator-notice">Prototype operator view. Authentication and production-grade D1 storage will be added before public deployment.</div>
+  </main>
+  <script type="module" src="/operator-static.js"></script>
+</body>
+</html>
