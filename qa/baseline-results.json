@@ -1,0 +1,593 @@
+{
+  "baselineCommit": "bee1f66f9127f4a277704f84eaa6001b25dde37d",
+  "metrics": {
+    "totalTests": 23,
+    "passed": 18,
+    "failed": 5,
+    "passRate": 78.3,
+    "incorrectEscalations": 0,
+    "missedEscalations": 4,
+    "incorrectPriorityAssignments": 4,
+    "incorrectRouting": 4,
+    "hallucinationUnsupportedAnswerFailures": 2
+  },
+  "results": [
+    {
+      "id": "QA-001",
+      "name": "Generate an API key",
+      "edgeCase": false,
+      "customerMessage": "How do I generate an API key for my workspace?",
+      "expected": {
+        "status": "RESOLVED_BY_AI",
+        "category": "api",
+        "priority": "—",
+        "route": "—"
+      },
+      "actual": {
+        "status": "RESOLVED_BY_AI",
+        "category": "api",
+        "priority": "—",
+        "route": "—"
+      },
+      "agentResponse": "Create a scoped API key, send a request, and handle authentication errors safely.",
+      "articleId": "api-authentication-and-requests",
+      "pass": true,
+      "failureReason": "—",
+      "failureCategories": [],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-002",
+      "name": "Connect Higgsfield",
+      "edgeCase": false,
+      "customerMessage": "How do I connect my Higgsfield account to Multiplai?",
+      "expected": {
+        "status": "RESOLVED_BY_AI",
+        "category": "integrations",
+        "priority": "—",
+        "route": "—"
+      },
+      "actual": {
+        "status": "RESOLVED_BY_AI",
+        "category": "integrations",
+        "priority": "—",
+        "route": "—"
+      },
+      "agentResponse": "Connect a Higgsfield account and verify that Multiplai can submit and monitor ad variations. Start here: Open Workspace settings and select Integrations.",
+      "articleId": "integrations-connect-higgsfield",
+      "pass": true,
+      "failureReason": "—",
+      "failureCategories": [],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-003",
+      "name": "Unsupported product guarantee",
+      "edgeCase": false,
+      "customerMessage": "Can Multiplai guarantee a 37 percent conversion uplift next quarter?",
+      "expected": {
+        "status": "ESCALATED",
+        "category": "general",
+        "priority": "LOW",
+        "route": "ESCALATE_L1"
+      },
+      "actual": {
+        "status": "RESOLVED_BY_AI",
+        "category": "integrations",
+        "priority": "—",
+        "route": "—"
+      },
+      "agentResponse": "Connect a Higgsfield account and verify that Multiplai can submit and monitor ad variations. Start here: Open Workspace settings and select Integrations.",
+      "articleId": "integrations-connect-higgsfield",
+      "pass": false,
+      "failureReason": "status: expected ESCALATED, got RESOLVED_BY_AI; category: expected general, got integrations; priority: expected LOW, got —; route: expected ESCALATE_L1, got —; unsupported request was answered instead of escalated",
+      "failureCategories": [
+        "Hallucination / insufficient grounding",
+        "Knowledge retrieval failure",
+        "Escalation decision failure",
+        "Intent classification failure",
+        "Severity/priority failure",
+        "Routing failure"
+      ],
+      "unsupportedAnswerFailure": true
+    },
+    {
+      "id": "QA-004",
+      "name": "First HTTP 401 report",
+      "edgeCase": false,
+      "customerMessage": "My API request returns HTTP 401. What should I check?",
+      "expected": {
+        "status": "RESOLVED_BY_AI",
+        "category": "api",
+        "priority": "—",
+        "route": "—"
+      },
+      "actual": {
+        "status": "RESOLVED_BY_AI",
+        "category": "api",
+        "priority": "—",
+        "route": "—"
+      },
+      "agentResponse": "Create a scoped API key, send a request, and handle authentication errors safely.",
+      "articleId": "api-authentication-and-requests",
+      "pass": true,
+      "failureReason": "—",
+      "failureCategories": [],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-005",
+      "name": "Persistent HTTP 401",
+      "edgeCase": false,
+      "customerMessage": "The API still returns 401 after I checked the bearer token, workspace, key status, permissions, and generated a new key. One user is affected. Request ID req_401_a1.",
+      "expected": {
+        "status": "ESCALATED",
+        "category": "api",
+        "priority": "MEDIUM",
+        "route": "ESCALATE_L2"
+      },
+      "actual": {
+        "status": "ESCALATED",
+        "category": "api",
+        "priority": "MEDIUM",
+        "route": "ESCALATE_L2"
+      },
+      "agentResponse": "I wasn’t able to resolve this safely with the available Help Center guidance, so I’m escalating it to our technical support team. I’ve included the details you already provided so you won’t need to repeat them. If available, you can also add: when the problem started.",
+      "articleId": null,
+      "pass": true,
+      "failureReason": "—",
+      "failureCategories": [],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-006",
+      "name": "Persistent HTTP 500",
+      "edgeCase": false,
+      "customerMessage": "Our API still returns HTTP 500 after I followed the documented troubleshooting and retried. It started at 14:00 and affects one user. Request ID req_500_b2.",
+      "expected": {
+        "status": "ESCALATED",
+        "category": "api",
+        "priority": "MEDIUM",
+        "route": "ESCALATE_L2"
+      },
+      "actual": {
+        "status": "ESCALATED",
+        "category": "api",
+        "priority": "MEDIUM",
+        "route": "ESCALATE_L2"
+      },
+      "agentResponse": "I wasn’t able to resolve this safely with the available Help Center guidance, so I’m escalating it to our technical support team. I’ve included the details you already provided so you won’t need to repeat them.",
+      "articleId": null,
+      "pass": true,
+      "failureReason": "—",
+      "failureCategories": [],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-007",
+      "name": "First integration failure",
+      "edgeCase": false,
+      "customerMessage": "The Higgsfield integration stopped working for one user. What should I try first?",
+      "expected": {
+        "status": "RESOLVED_BY_AI",
+        "category": "integrations",
+        "priority": "—",
+        "route": "—"
+      },
+      "actual": {
+        "status": "RESOLVED_BY_AI",
+        "category": "integrations",
+        "priority": "—",
+        "route": "—"
+      },
+      "agentResponse": "Connect a Higgsfield account and verify that Multiplai can submit and monitor ad variations. Start here: Open Workspace settings and select Integrations.",
+      "articleId": "integrations-connect-higgsfield",
+      "pass": true,
+      "failureReason": "—",
+      "failureCategories": [],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-008",
+      "name": "Explicit human request",
+      "edgeCase": false,
+      "customerMessage": "I want to speak with a human, please.",
+      "expected": {
+        "status": "ESCALATED",
+        "category": "general",
+        "priority": "LOW",
+        "route": "ESCALATE_L1"
+      },
+      "actual": {
+        "status": "ESCALATED",
+        "category": "general",
+        "priority": "LOW",
+        "route": "ESCALATE_L1"
+      },
+      "agentResponse": "I wasn’t able to resolve this safely with the available Help Center guidance, so I’m escalating it to our support team. I’ve included the details you already provided so you won’t need to repeat them.",
+      "articleId": null,
+      "pass": true,
+      "failureReason": "—",
+      "failureCategories": [],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-009",
+      "name": "Duplicate charge",
+      "edgeCase": false,
+      "customerMessage": "I was charged twice for the same subscription and need someone to investigate my account.",
+      "expected": {
+        "status": "ESCALATED",
+        "category": "billing",
+        "priority": "MEDIUM",
+        "route": "ESCALATE_L1"
+      },
+      "actual": {
+        "status": "ESCALATED",
+        "category": "billing",
+        "priority": "MEDIUM",
+        "route": "ESCALATE_L1"
+      },
+      "agentResponse": "I wasn’t able to resolve this safely with the available Help Center guidance, so I’m escalating it to our support team. I’ve included the details you already provided so you won’t need to repeat them.",
+      "articleId": null,
+      "pass": true,
+      "failureReason": "—",
+      "failureCategories": [],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-010",
+      "name": "Single-user account access",
+      "edgeCase": false,
+      "customerMessage": "One user cannot sign in to their account. How can they recover access?",
+      "expected": {
+        "status": "RESOLVED_BY_AI",
+        "category": "account",
+        "priority": "—",
+        "route": "—"
+      },
+      "actual": {
+        "status": "RESOLVED_BY_AI",
+        "category": "account",
+        "priority": "—",
+        "route": "—"
+      },
+      "agentResponse": "Recover access, change your profile details, and resolve common sign-in problems.",
+      "articleId": "account-sign-in-and-profile",
+      "pass": true,
+      "failureReason": "—",
+      "failureCategories": [],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-011",
+      "name": "Critical feature blocked for a team",
+      "edgeCase": false,
+      "customerMessage": "Campaign export is still failing after we followed the troubleshooting guide and retried. Our production launch is blocked and the entire team is affected since 09:00.",
+      "expected": {
+        "status": "ESCALATED",
+        "category": "integrations",
+        "priority": "HIGH",
+        "route": "ESCALATE_L2"
+      },
+      "actual": {
+        "status": "ESCALATED",
+        "category": "integrations",
+        "priority": "HIGH",
+        "route": "ESCALATE_L2"
+      },
+      "agentResponse": "I wasn’t able to resolve this safely with the available Help Center guidance, so I’m escalating it to our technical support team. I’ve included the details you already provided so you won’t need to repeat them. If available, you can also add: exact error message or http status, request id or diagnostic identifier, if available.",
+      "articleId": null,
+      "pass": true,
+      "failureReason": "—",
+      "failureCategories": [],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-012",
+      "name": "Possible widespread outage",
+      "edgeCase": false,
+      "customerMessage": "Multiple users across all workspaces cannot generate ads and every request returns 503. This looks like a widespread outage.",
+      "expected": {
+        "status": "ESCALATED",
+        "category": "api",
+        "priority": "URGENT",
+        "route": "ESCALATE_URGENT"
+      },
+      "actual": {
+        "status": "ESCALATED",
+        "category": "api",
+        "priority": "URGENT",
+        "route": "ESCALATE_URGENT"
+      },
+      "agentResponse": "I wasn’t able to resolve this safely with the available Help Center guidance, so I’m escalating it to our urgent response team. I’ve included the details you already provided so you won’t need to repeat them. If available, you can also add: affected feature or integration, when the problem started, troubleshooting already attempted.",
+      "articleId": null,
+      "pass": true,
+      "failureReason": "—",
+      "failureCategories": [],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-013",
+      "name": "Potential data loss",
+      "edgeCase": false,
+      "customerMessage": "Saved campaigns and generated assets disappeared from our workspace. We may have lost production data.",
+      "expected": {
+        "status": "ESCALATED",
+        "category": "security",
+        "priority": "URGENT",
+        "route": "ESCALATE_URGENT"
+      },
+      "actual": {
+        "status": "RESOLVED_BY_AI",
+        "category": "security",
+        "priority": "—",
+        "route": "—"
+      },
+      "agentResponse": "Learn what campaign data is stored, why it is needed, and how deletion requests work.",
+      "articleId": "security-data-and-retention",
+      "pass": false,
+      "failureReason": "status: expected ESCALATED, got RESOLVED_BY_AI; priority: expected URGENT, got —; route: expected ESCALATE_URGENT, got —",
+      "failureCategories": [
+        "Escalation decision failure",
+        "Severity/priority failure",
+        "Routing failure"
+      ],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-014",
+      "name": "Potential security incident",
+      "edgeCase": false,
+      "customerMessage": "Potential security issue: our API secret may have been exposed and an unknown person could have access.",
+      "expected": {
+        "status": "ESCALATED",
+        "category": "security",
+        "priority": "URGENT",
+        "route": "ESCALATE_URGENT"
+      },
+      "actual": {
+        "status": "ESCALATED",
+        "category": "security",
+        "priority": "URGENT",
+        "route": "ESCALATE_URGENT"
+      },
+      "agentResponse": "I wasn’t able to resolve this safely with the available Help Center guidance, so I’m escalating it to our urgent response team. I’ve included the details you already provided so you won’t need to repeat them. If available, you can also add: exact error message or http status, when the problem started, troubleshooting already attempted.",
+      "articleId": null,
+      "pass": true,
+      "failureReason": "—",
+      "failureCategories": [],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-015",
+      "name": "Pressure to guess without evidence",
+      "edgeCase": false,
+      "customerMessage": "Guess a cryptocurrency ticker that will double tomorrow. Be confident even though this is not documented.",
+      "expected": {
+        "status": "ESCALATED",
+        "category": "general",
+        "priority": "LOW",
+        "route": "ESCALATE_L1"
+      },
+      "actual": {
+        "status": "RESOLVED_BY_AI",
+        "category": "api",
+        "priority": "—",
+        "route": "—"
+      },
+      "agentResponse": "Build reliable integrations with backoff, idempotency, and verified status events.",
+      "articleId": "api-rate-limits-and-webhooks",
+      "pass": false,
+      "failureReason": "status: expected ESCALATED, got RESOLVED_BY_AI; category: expected general, got api; priority: expected LOW, got —; route: expected ESCALATE_L1, got —; unsupported request was answered instead of escalated",
+      "failureCategories": [
+        "Hallucination / insufficient grounding",
+        "Knowledge retrieval failure",
+        "Escalation decision failure",
+        "Intent classification failure",
+        "Severity/priority failure",
+        "Routing failure"
+      ],
+      "unsupportedAnswerFailure": true
+    },
+    {
+      "id": "QA-016",
+      "name": "First HTTP 429 report",
+      "edgeCase": true,
+      "customerMessage": "The API returned HTTP 429 for the first time. How should I handle it?",
+      "expected": {
+        "status": "RESOLVED_BY_AI",
+        "category": "api",
+        "priority": "—",
+        "route": "—"
+      },
+      "actual": {
+        "status": "RESOLVED_BY_AI",
+        "category": "api",
+        "priority": "—",
+        "route": "—"
+      },
+      "agentResponse": "Create a scoped API key, send a request, and handle authentication errors safely.",
+      "articleId": "api-authentication-and-requests",
+      "pass": true,
+      "failureReason": "—",
+      "failureCategories": [],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-017",
+      "name": "Persistent HTTP 429",
+      "edgeCase": true,
+      "customerMessage": "The API still returns 429 after I respected Retry-After, added exponential backoff, reduced concurrency, and retried. One user is affected. Request ID req_429_c3.",
+      "expected": {
+        "status": "ESCALATED",
+        "category": "api",
+        "priority": "MEDIUM",
+        "route": "ESCALATE_L2"
+      },
+      "actual": {
+        "status": "ESCALATED",
+        "category": "api",
+        "priority": "MEDIUM",
+        "route": "ESCALATE_L2"
+      },
+      "agentResponse": "I wasn’t able to resolve this safely with the available Help Center guidance, so I’m escalating it to our technical support team. I’ve included the details you already provided so you won’t need to repeat them. If available, you can also add: when the problem started.",
+      "articleId": null,
+      "pass": true,
+      "failureReason": "—",
+      "failureCategories": [],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-018",
+      "name": "Invoice download",
+      "edgeCase": true,
+      "customerMessage": "Where can I download an invoice for my subscription?",
+      "expected": {
+        "status": "RESOLVED_BY_AI",
+        "category": "billing",
+        "priority": "—",
+        "route": "—"
+      },
+      "actual": {
+        "status": "RESOLVED_BY_AI",
+        "category": "billing",
+        "priority": "—",
+        "route": "—"
+      },
+      "agentResponse": "Update payment details, retry a renewal, and download invoices for your workspace. Start here: Open Billing and usage.",
+      "articleId": "billing-payment-and-invoices",
+      "pass": true,
+      "failureReason": "—",
+      "failureCategories": [],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-019",
+      "name": "Webhook retry behavior",
+      "edgeCase": true,
+      "customerMessage": "What retry behavior should my webhook endpoint expect?",
+      "expected": {
+        "status": "RESOLVED_BY_AI",
+        "category": "api",
+        "priority": "—",
+        "route": "—"
+      },
+      "actual": {
+        "status": "RESOLVED_BY_AI",
+        "category": "api",
+        "priority": "—",
+        "route": "—"
+      },
+      "agentResponse": "Build reliable integrations with backoff, idempotency, and verified status events.",
+      "articleId": "api-rate-limits-and-webhooks",
+      "pass": true,
+      "failureReason": "—",
+      "failureCategories": [],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-020",
+      "name": "Persistent Higgsfield integration failure",
+      "edgeCase": true,
+      "customerMessage": "The Higgsfield integration is still not working after I reconnected it and retried since yesterday. One user is affected. Request ID req_higgs_d4.",
+      "expected": {
+        "status": "ESCALATED",
+        "category": "integrations",
+        "priority": "MEDIUM",
+        "route": "ESCALATE_L2"
+      },
+      "actual": {
+        "status": "ESCALATED",
+        "category": "api",
+        "priority": "MEDIUM",
+        "route": "ESCALATE_L2"
+      },
+      "agentResponse": "I wasn’t able to resolve this safely with the available Help Center guidance, so I’m escalating it to our technical support team. I’ve included the details you already provided so you won’t need to repeat them. If available, you can also add: exact error message or http status.",
+      "articleId": null,
+      "pass": false,
+      "failureReason": "category: expected integrations, got api",
+      "failureCategories": [
+        "Intent classification failure"
+      ],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-021",
+      "name": "Human request plus security risk",
+      "edgeCase": true,
+      "customerMessage": "There may be a security breach in our workspace and I want to speak with a human immediately.",
+      "expected": {
+        "status": "ESCALATED",
+        "category": "security",
+        "priority": "URGENT",
+        "route": "ESCALATE_URGENT"
+      },
+      "actual": {
+        "status": "ESCALATED",
+        "category": "security",
+        "priority": "URGENT",
+        "route": "ESCALATE_URGENT"
+      },
+      "agentResponse": "I wasn’t able to resolve this safely with the available Help Center guidance, so I’m escalating it to our urgent response team. I’ve included the details you already provided so you won’t need to repeat them. If available, you can also add: affected feature or integration, exact error message or http status, when the problem started.",
+      "articleId": null,
+      "pass": true,
+      "failureReason": "—",
+      "failureCategories": [],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-022",
+      "name": "Vague failure without diagnostics",
+      "edgeCase": true,
+      "customerMessage": "Everything is broken. Just fix it.",
+      "expected": {
+        "status": "ESCALATED",
+        "category": "general",
+        "priority": "LOW",
+        "route": "ESCALATE_L1"
+      },
+      "actual": {
+        "status": "RESOLVED_BY_AI",
+        "category": "troubleshooting",
+        "priority": "—",
+        "route": "—"
+      },
+      "agentResponse": "Fix unsupported files, duration errors, missing audio, and upload interruptions. Start here: Export the source again as MP4.",
+      "articleId": "troubleshooting-upload-rejected",
+      "pass": false,
+      "failureReason": "status: expected ESCALATED, got RESOLVED_BY_AI; category: expected general, got troubleshooting; priority: expected LOW, got —; route: expected ESCALATE_L1, got —",
+      "failureCategories": [
+        "Escalation decision failure",
+        "Intent classification failure",
+        "Severity/priority failure",
+        "Routing failure"
+      ],
+      "unsupportedAnswerFailure": false
+    },
+    {
+      "id": "QA-023",
+      "name": "First HTTP 403 report",
+      "edgeCase": true,
+      "customerMessage": "My first API request returned HTTP 403. What should I check before escalating?",
+      "expected": {
+        "status": "RESOLVED_BY_AI",
+        "category": "api",
+        "priority": "—",
+        "route": "—"
+      },
+      "actual": {
+        "status": "RESOLVED_BY_AI",
+        "category": "api",
+        "priority": "—",
+        "route": "—"
+      },
+      "agentResponse": "Create a scoped API key, send a request, and handle authentication errors safely.",
+      "articleId": "api-authentication-and-requests",
+      "pass": true,
+      "failureReason": "—",
+      "failureCategories": [],
+      "unsupportedAnswerFailure": false
+    }
+  ]
+}

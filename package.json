@@ -8,7 +8,8 @@
     "dev": "node server.mjs",
     "start": "node server.mjs",
     "build": "node scripts/validate.mjs",
-    "test": "node scripts/validate.mjs"
+    "test": "node scripts/validate.mjs",
+    "qa:baseline": "node qa/baseline-suite.mjs"
   },
   "engines": {
     "node": ">=20"
